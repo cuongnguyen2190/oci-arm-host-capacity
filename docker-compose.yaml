@@ -1,0 +1,17 @@
+version: "3.7"
+networks:
+    default:
+        external:
+          name: network-internal
+
+services:
+    cron:
+        build:
+            context: .
+            dockerfile: Application.Dockerfile
+        image: hungcuongvt90/php-cron-oracle
+        container_name: cron
+        volumes:
+            - ./:/var/www/html
+        command: ["/usr/local/bin/docker-entrypoint.sh"]
+        restart: always
